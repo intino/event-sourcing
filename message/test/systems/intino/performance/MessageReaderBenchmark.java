@@ -1,9 +1,8 @@
-package io.intino.performance;
+package systems.intino.performance;
 
 import systems.intino.eventsourcing.message.LegacyMessageReader;
 import systems.intino.eventsourcing.message.Message;
 import systems.intino.eventsourcing.message.MessageReader;
-import io.intino.performance.impl.FastMessageReaderOld;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 

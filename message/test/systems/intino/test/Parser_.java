@@ -1,7 +1,7 @@
-package io.intino.test;
+package systems.intino.test;
 
 import systems.intino.eventsourcing.message.MessageReader;
-import io.intino.performance.impl.MessageStreamOld;
+import systems.intino.performance.impl.MessageStreamOld;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;

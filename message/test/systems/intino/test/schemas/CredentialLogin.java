@@ -1,4 +1,4 @@
-package io.intino.test.schemas;
+package systems.intino.test.schemas;
 
 public class CredentialLogin implements java.io.Serializable {
 

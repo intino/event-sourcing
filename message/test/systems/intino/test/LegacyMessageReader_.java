@@ -1,13 +1,10 @@
-package io.intino.test;
+package systems.intino.test;
 
 import systems.intino.eventsourcing.message.LegacyMessageReader;
-import systems.intino.eventsourcing.message.MessageReader;
 import systems.intino.eventsourcing.message.Message;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -16,17 +13,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class MessageReader_ {
-
-	@Test
-	public void read_huge_message() throws Exception {
-		try(var reader = new MessageReader(new FileInputStream("C:\\Users\\naits\\Downloads\\huge.message"))) {
-			while(reader.hasNext()) {
-				Message m = reader.next();
-				System.out.println(m);
-			}
-		}
-	}
+public class LegacyMessageReader_ {
 
 	@Test
 	public void sould_ignore_lines_without_colon_or_multiline_indentation() {
@@ -41,7 +28,7 @@ public class MessageReader_ {
 
 		System.out.println(inl);
 
-		Message m = new MessageReader(inl).next();
+		Message m = new LegacyMessageReader(inl).next();
 		assertNotNull(m);
 
 		String[] attribWithLineBreaks = m.get("attribWithLineBreaks").asMultiline();
@@ -56,21 +43,15 @@ public class MessageReader_ {
 
 	@Test
 	public void sould_read_message_with_attributes_after_multiline_attribute() {
-//		String inl = "[CuentaDestinatarios]\n" +
-//				"ts: 2018-01-01T00:00:16Z\n" +
-//				"emails:\n" +
-//				"\tsomeemail@gmail.com\n" +
-//				"\tother_email@outlook.es\n" +
-//				"cuenta: ABC\n" +
-//				"ss: default";
-//
-		Message inl = new Message("CuentaDestinatatios")
-				.set("ts", "2018-01-01T00:00:16Z")
-				.set("emails", "someemail@gmail.com\nother_email@outlook.es")
-				.set("cuenta", "ABC")
-				.set("ss", "default");
+		String inl = "[CuentaDestinatarios]\n" +
+				"ts: 2018-01-01T00:00:16Z\n" +
+				"emails:\n" +
+				"\tsomeemail@gmail.com\n" +
+				"\tother_email@outlook.es\n" +
+				"cuenta: ABC\n" +
+				"ss: default";
 
-		Message m = new MessageReader(inl.toString()).next();
+		Message m = new LegacyMessageReader(inl).next();
 		assertNotNull(m);
 
 		assertEquals(4, m.attributes().size());
@@ -83,33 +64,20 @@ public class MessageReader_ {
 
 	@Test
 	public void should_read_message_with_empty_attributes() {
-//		String inl = "[Ingreso]\n" +
-//				"ts: 2020-05-20T15:36:27.046617Z\n" +
-//				"id: 202005_123456\n" +
-//				"fecha: 2020-05-19T00:00:00Z\n" +
-//				"numeroDocumento: 102345\n" +
-//				"division: DC\n" +
-//				"referencia: 000234000010\n" +
-//				"observaciones: \n" +
-//				"origenIngreso: Banco\n" +
-//				"cecodiv: asrd3\n" +
-//				"importe: 1220\n" +
-//				"ss: default";
+		String inl = "[Ingreso]\n" +
+				"ts: 2020-05-20T15:36:27.046617Z\n" +
+				"id: 202005_123456\n" +
+				"fecha: 2020-05-19T00:00:00Z\n" +
+				"numeroDocumento: 102345\n" +
+				"division: DC\n" +
+				"referencia: 000234000010\n" +
+				"observaciones: \n" +
+				"origenIngreso: Banco\n" +
+				"cecodiv: asrd3\n" +
+				"importe: 1220\n" +
+				"ss: default";
 
-		Message inl = new Message("Ingreso");
-		inl.set("ts", "2020-05-20T15:36:27.046617Z");
-		inl.set("id", "202005_123456");
-		inl.set("fecha", "2020-05-19T00:00:00Z");
-		inl.set("numeroDocumento", 102345L);
-		inl.set("division", "DC");
-		inl.set("referencia", "000234000010");
-		inl.set("observaciones","");
-		inl.set("origenIngreso", "Banco");
-		inl.set("cecodiv", "asrd3");
-		inl.set("importe", 1220);
-		inl.set("ss", "default");
-
-		Message m = new MessageReader(inl.toString()).next();
+		Message m = new LegacyMessageReader(inl).next();
 		assertNotNull(m);
 
 		assertEquals(11, m.attributes().size());
@@ -129,57 +97,29 @@ public class MessageReader_ {
 
 	@Test
 	public void should_read_message_multiline2() {
-//		String message = "[WARNING]\n" +
-//				"ts: 2021-07-27T14:28:31.494323Z\n" +
-//				"source: io.intino.magritte.framework.loaders.ListProcessor:process\n" +
-//				"message:\n" +
-//				"\tG@R@34";
-
-		Message message = new Message("WARNING")
-				.set("ts", "2021-07-27T14:28:31.494323Z")
-				.set("source", "io.intino.magritte.framework.loaders.ListProcessor:process")
-				.set("message", "\nG@R@34");
-
-		Message next = new MessageReader(message.toString()).next();
+		String message = "[WARNING]\n" +
+				"ts: 2021-07-27T14:28:31.494323Z\n" +
+				"source: io.intino.magritte.framework.loaders.ListProcessor:process\n" +
+				"message:\n" +
+				"\tG@R@34";
+		Message next = new LegacyMessageReader(message).next();
 		assertNotNull(next);
-		assertEquals("\nG@R@34", next.get("message").asString());
-		message.set("message", "G@R@34");
-		next = new MessageReader(message.toString()).next();
+		assertEquals("G@R@34", next.get("message").asString());
+		message = "[WARNING]\n" +
+				"ts: 2021-07-27T14:28:31.494323Z\n" +
+				"source: io.intino.magritte.framework.loaders.ListProcessor:process\n" +
+				"message:G@R@34";
+		next = new LegacyMessageReader(message).next();
 		assertNotNull(next);
 		assertEquals("G@R@34", next.get("message").asString());
 	}
 
 	@Test
 	public void should_read_message_multiline() {
-//		String message = "[ERROR]\n" +
-//				"ts: 2021-07-27T12:50:03.232980Z\n" +
-//				"source: mx.mediagram.banman.accessor.api.BanmanService$2:onMessage:263\n" +
-//				"message:" + "\n" +
-//				"\tjava.util.ConcurrentModificationException\n" +
-//				"\t\tat java.base/java.util.LinkedHashMap$LinkedHashIterator.nextNode(LinkedHashMap.java:719)\n" +
-//				"\t\tat java.base/java.util.LinkedHashMap$LinkedEntryIterator.next(LinkedHashMap.java:751)\n" +
-//				"\t\tat java.base/java.util.LinkedHashMap$LinkedEntryIterator.next(LinkedHashMap.java:749)\n" +
-//				"\t\tat java.base/java.util.Iterator.forEachRemaining(Iterator.java:133)\n" +
-//				"\t\tat java.base/java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1801)\n" +
-//				"\t\tat java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)\n" +
-//				"\t\tat java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)\n" +
-//				"\t\tat java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)\n" +
-//				"\t\tat java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)\n" +
-//				"\t\tat java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578)\n" +
-//				"\t\tat mx.mediagram.banman.accessor.model.Queue.save(Queue.java:101)\n" +
-//				"\t\tat mx.mediagram.banman.accessor.model.Queue.save(Queue.java:96)\n" +
-//				"\t\tat mx.mediagram.banman.accessor.model.Queue.removeMessage(Queue.java:119)\n" +
-//				"\t\tat mx.mediagram.banman.accessor.model.Queue.removeOutputMessage(Queue.java:47)\n" +
-//				"\t\tat mx.mediagram.banman.accessor.api.BanmanService$2.onMessage(BanmanService.java:254)\n" +
-//				"\t\tat org.java_websocket.client.WebSocketClient.onWebsocketMessage(WebSocketClient.java:593)\n" +
-//				"\t\tat org.java_websocket.drafts.Draft_6455.processFrameText(Draft_6455.java:885)\n" +
-//				"\t\tat org.java_websocket.drafts.Draft_6455.processFrame(Draft_6455.java:819)\n" +
-//				"\t\tat org.java_websocket.WebSocketImpl.decodeFrames(WebSocketImpl.java:379)\n" +
-//				"\t\tat org.java_websocket.WebSocketImpl.decode(WebSocketImpl.java:216)\n" +
-//				"\t\tat org.java_websocket.client.WebSocketClient.run(WebSocketClient.java:506)\n" +
-//				"\t\tat java.base/java.lang.Thread.run(Thread.java:834)";
-
-		String trace = "\n" +
+		String message = "[ERROR]\n" +
+				"ts: 2021-07-27T12:50:03.232980Z\n" +
+				"source: mx.mediagram.banman.accessor.api.BanmanService$2:onMessage:263\n" +
+				"message:\n" +
 				"\tjava.util.ConcurrentModificationException\n" +
 				"\t\tat java.base/java.util.LinkedHashMap$LinkedHashIterator.nextNode(LinkedHashMap.java:719)\n" +
 				"\t\tat java.base/java.util.LinkedHashMap$LinkedEntryIterator.next(LinkedHashMap.java:751)\n" +
@@ -203,20 +143,10 @@ public class MessageReader_ {
 				"\t\tat org.java_websocket.WebSocketImpl.decode(WebSocketImpl.java:216)\n" +
 				"\t\tat org.java_websocket.client.WebSocketClient.run(WebSocketClient.java:506)\n" +
 				"\t\tat java.base/java.lang.Thread.run(Thread.java:834)";
-
-		Message message = new Message("ERROR")
-				.set("ts", "2021-07-27T12:50:03.232980Z")
-				.set("source", "mx.mediagram.banman.accessor.api.BanmanService$2:onMessage:263")
-				.set("message", trace);
-
-		Message next = new MessageReader(message.toString()).next();
-
+		Message next = new LegacyMessageReader(message).next();
 		assertNotNull(next);
-
-		assertEquals("2021-07-27T12:50:03.232980Z", message.get("ts").asString());
-		assertEquals("mx.mediagram.banman.accessor.api.BanmanService$2:onMessage:263", message.get("source").asString());
-		assertEquals(trace, message.get("message").asString());
 	}
+
 
 	@Test
 	public void should_read_message() {
@@ -224,20 +154,17 @@ public class MessageReader_ {
 				"ts: 2021-04-23T08:20:15.056773Z\n" +
 				"source: io.intino.magritte.framework.LayerFactory:create\n" +
 				"message: Concept AbstractAcquisition$Device hasn't layer registered. Node Assets#Assets_3962_0_0696810257 won't have it\n";
-		Message next = new MessageReader(message).next();
+		Message next = new LegacyMessageReader(message).next();
 		assertNotNull(next);
-
-		assertEquals(Instant.parse("2021-04-23T08:20:15.056773Z"), next.get("ts").asInstant());
-		assertEquals("io.intino.magritte.framework.LayerFactory:create", next.get("source").asString());
-		assertEquals("Concept AbstractAcquisition$Device hasn't layer registered. Node Assets#Assets_3962_0_0696810257 won't have it", next.get("message").asString());
 	}
 
 	@Test
 	public void should_read_empty_content() {
-		MessageReader messages = new MessageReader("");
+		LegacyMessageReader messages = new LegacyMessageReader("");
 		assertThat(messages.hasNext()).isFalse();
 		assertThat(messages.next()).isNull();
 	}
+
 
 	@Test
 	public void should_read_messages_in_a_class_with_parent() {
@@ -261,7 +188,7 @@ public class MessageReader_ {
 				"\n" +
 				"[Teacher.Country]\n" +
 				"name: Germany\n";
-		MessageReader messages = new MessageReader(inl);
+		LegacyMessageReader messages = new LegacyMessageReader(inl);
 
 		assertThat(messages.hasNext()).isTrue();
 		Message m1 = messages.next();
@@ -308,7 +235,7 @@ public class MessageReader_ {
 				"apkVersion = 3.0.21\n" +
 				"fingerSizes = 0\n" +
 				"hearts = 1\n";
-		MessageReader messages = new MessageReader(inl);
+		LegacyMessageReader messages = new LegacyMessageReader(inl);
 		Message message = messages.next();
 		assertThat(message.contains("issueId")).isFalse();
 		assertThat(message.get("wantsToBeContacted").as(Boolean.class)).isFalse();
@@ -340,7 +267,7 @@ public class MessageReader_ {
 				"[Teacher.Phone.Country]\n" +
 				"name: Mexico\n";
 
-		MessageReader messages = new MessageReader(inl);
+		LegacyMessageReader messages = new LegacyMessageReader(inl);
 		assertThat(messages.hasNext()).isTrue();
 		Message message = messages.next();
 		assertThat(message.toString()).isEqualTo(inl);
@@ -359,7 +286,7 @@ public class MessageReader_ {
 				"prices: " + "5.0\u0001" + "24.5\u0001" + "8.0\u0001" + "7.0\n" +
 				"availability: " + "true\u0001" + "false\n";
 
-		MessageReader messages = new MessageReader(inl);
+		LegacyMessageReader messages = new LegacyMessageReader(inl);
 		assertThat(messages.hasNext()).isTrue();
 		Message message = messages.next();
 		assertThat(message.toString()).isEqualTo(inl);
@@ -384,7 +311,7 @@ public class MessageReader_ {
 				"cargo: CONTRALOR INTERNO\n" +
 				"tipo: Comercial\n" +
 				"email: raul.caballero@hidalgo.gob\n";
-		Message message = new MessageReader(inl).next();
+		Message message = new LegacyMessageReader(inl).next();
 		String telefonos = message.get("telefonos").asString();
 		System.out.println(telefonos);
 	}
@@ -401,7 +328,7 @@ public class MessageReader_ {
 				"\t\tat java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)\n" +
 				"\t\tat java.base/java.lang.Thread.run(Thread.java:834)\n";
 
-		Message message = new MessageReader(new LegacyMessageReader(inl).next().toString()).next();
+		Message message = new LegacyMessageReader(inl).next();
 		assertThat(message.get("ts").as(Instant.class)).isEqualTo(Instant.parse("2020-05-05T19:24:32.533342Z"));
 		assertThat(message.get("source").as(String.class)).isEqualTo("systems.intino.eventsourcing.jms.TopicConsumer:close:36");
 		assertThat(message.get("message").as(String.class)).isEqualTo("javax.jms.IllegalStateException: The Session is closed\n" +
@@ -422,7 +349,7 @@ public class MessageReader_ {
 				"\tts: 2020-06-18T13:30:58.329749Z\n" +
 				"\tsource: systems.intino.eventsourcing.terminal.JmsConnector$1:transportResumed:306\n" +
 				"\tmessage: Connection with Data Hub established!\n";
-		Message message = new MessageReader(inl).next();
+		Message message = new LegacyMessageReader(inl).next();
 		assertThat(message).isNotNull();
 		assertThat(message.get("value").asString()).isNotNull();
 	}
@@ -460,7 +387,7 @@ public class MessageReader_ {
 				"\t\tat org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:708)\n" +
 				"\t\tat org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:626)\n" +
 				"\t\tat java.base/java.lang.Thread.run(Thread.java:834)";
-		Message message = new MessageReader(inl).next();
+		Message message = new LegacyMessageReader(inl).next();
 		assertThat(message).isNotNull();
 		assertThat(message.get("message").asString()).isNotNull();
 	}

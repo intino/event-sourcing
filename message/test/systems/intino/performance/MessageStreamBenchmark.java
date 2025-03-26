@@ -1,7 +1,7 @@
-package io.intino.performance;
+package systems.intino.performance;
 
 import systems.intino.eventsourcing.message.MessageStream;
-import io.intino.performance.impl.MessageStreamOld;
+import systems.intino.performance.impl.MessageStreamOld;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 

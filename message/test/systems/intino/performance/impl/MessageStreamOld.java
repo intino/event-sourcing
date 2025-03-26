@@ -1,4 +1,4 @@
-package io.intino.performance.impl;
+package systems.intino.performance.impl;
 
 import systems.intino.eventsourcing.message.MessageException;
 

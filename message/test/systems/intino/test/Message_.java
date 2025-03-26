@@ -1,11 +1,10 @@
-package io.intino.test;
+package systems.intino.test;
 
 import systems.intino.eventsourcing.message.Message;
 import systems.intino.eventsourcing.message.MessageReader;
 import org.junit.Test;
 
 import java.util.*;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;

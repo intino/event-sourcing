@@ -1,7 +1,7 @@
-package io.intino.test;
+package systems.intino.test;
 
 import systems.intino.eventsourcing.message.Message;
-import io.intino.performance.impl.FastMessageReaderOld;
+import systems.intino.performance.impl.FastMessageReaderOld;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;

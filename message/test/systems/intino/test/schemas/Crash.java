@@ -1,4 +1,4 @@
-package io.intino.test.schemas;
+package systems.intino.test.schemas;
 
 import java.time.Instant;
 
