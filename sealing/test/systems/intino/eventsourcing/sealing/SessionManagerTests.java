@@ -5,7 +5,6 @@ import io.intino.alexandria.Timetag;
 import io.intino.alexandria.logger.Logger;
 import org.junit.After;
 import org.junit.Test;
-import systems.intino.eventsoucing.sealing.FileSessionSealer;
 import systems.intino.eventsourcing.datalake.file.FileDatalake;
 import systems.intino.eventsourcing.event.Event;
 import systems.intino.eventsourcing.event.EventReader;

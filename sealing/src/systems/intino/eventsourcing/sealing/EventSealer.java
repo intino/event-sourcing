@@ -1,8 +1,8 @@
-package systems.intino.eventsoucing.sealing;
+package systems.intino.eventsourcing.sealing;
 
 import io.intino.alexandria.logger.Logger;
-import systems.intino.eventsoucing.sealing.SessionSealer.TankNameFilter;
-import systems.intino.eventsoucing.sealing.sorters.MessageEventSorter;
+import systems.intino.eventsourcing.sealing.SessionSealer.TankNameFilter;
+import systems.intino.eventsourcing.sealing.sorters.MessageEventSorter;
 import systems.intino.eventsourcing.datalake.Datalake;
 import systems.intino.eventsourcing.datalake.file.FileStore;
 import systems.intino.eventsourcing.event.Event;

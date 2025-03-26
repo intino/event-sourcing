@@ -3,7 +3,6 @@ package systems.intino.eventsourcing.sealing;
 import org.apache.commons.io.FileUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import systems.intino.eventsoucing.sealing.EventSessionSealer;
 import systems.intino.eventsourcing.datalake.file.FileDatalake;
 import systems.intino.eventsourcing.event.Event;
 import systems.intino.eventsourcing.event.EventStream;

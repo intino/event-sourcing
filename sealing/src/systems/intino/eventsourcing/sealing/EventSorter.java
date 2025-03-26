@@ -1,4 +1,4 @@
-package systems.intino.eventsoucing.sealing;
+package systems.intino.eventsourcing.sealing;
 
 import java.io.File;
 import java.io.IOException;

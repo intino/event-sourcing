@@ -6,7 +6,6 @@ import systems.intino.eventsourcing.zim.ZimStream;
 import org.junit.After;
 import org.junit.Ignore;
 import org.junit.Test;
-import systems.intino.eventsoucing.sealing.FileSessionSealer;
 import systems.intino.eventsourcing.datalake.file.FileDatalake;
 import systems.intino.eventsourcing.event.Event;
 import systems.intino.eventsourcing.ingestion.EventSession;

@@ -1,6 +1,6 @@
-package systems.intino.eventsoucing.sealing.sorters;
+package systems.intino.eventsourcing.sealing.sorters;
 
-import systems.intino.eventsoucing.sealing.EventSorter;
+import systems.intino.eventsourcing.sealing.EventSorter;
 
 import java.io.*;
 import java.nio.file.Files;

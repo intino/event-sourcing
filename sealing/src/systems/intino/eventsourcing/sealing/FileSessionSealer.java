@@ -1,4 +1,4 @@
-package systems.intino.eventsoucing.sealing;
+package systems.intino.eventsourcing.sealing;
 
 import io.intino.alexandria.logger.Logger;
 import systems.intino.eventsourcing.datalake.file.FileDatalake;

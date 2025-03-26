@@ -1,7 +1,7 @@
 package systems.intino.eventsourcing.sealing;
 
 import org.junit.Test;
-import systems.intino.eventsoucing.sealing.sorters.MessageEventSorter;
+import systems.intino.eventsourcing.sealing.sorters.MessageEventSorter;
 import systems.intino.eventsourcing.event.Event;
 import systems.intino.eventsourcing.event.EventStream;
 import systems.intino.eventsourcing.event.EventWriter;

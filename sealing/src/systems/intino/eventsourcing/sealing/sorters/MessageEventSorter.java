@@ -1,9 +1,9 @@
-package systems.intino.eventsoucing.sealing.sorters;
+package systems.intino.eventsourcing.sealing.sorters;
 
 import com.github.luben.zstd.ZstdInputStream;
 import com.github.luben.zstd.ZstdOutputStream;
 import io.intino.alexandria.logger.Logger;
-import systems.intino.eventsoucing.sealing.EventSorter;
+import systems.intino.eventsourcing.sealing.EventSorter;
 
 import java.io.*;
 import java.nio.file.Files;

@@ -4,7 +4,7 @@ import io.intino.alexandria.Resource;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
-import systems.intino.eventsoucing.sealing.sorters.ResourceEventSorter;
+import systems.intino.eventsourcing.sealing.sorters.ResourceEventSorter;
 import systems.intino.eventsourcing.event.EventReader;
 import systems.intino.eventsourcing.event.EventWriter;
 import systems.intino.eventsourcing.event.resource.ResourceEvent;
