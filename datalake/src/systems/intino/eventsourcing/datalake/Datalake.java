@@ -68,7 +68,10 @@ public interface Datalake {
 		interface Source<T extends Event> {
 			String name();
 
-			default Tub<T> tub(String timetag) {return tub(Timetag.of(timetag));}
+			default Tub<T> tub(String timetag) {
+				return tub(Timetag.of(timetag));
+			}
+
 			Tub<T> tub(Timetag timetag);
 
 			Stream<Tub<T>> tubs();
@@ -85,6 +88,14 @@ public interface Datalake {
 
 			default Stream<Tub<T>> tubs(Timetag from, Timetag to) {
 				return StreamSupport.stream(from.iterateTo(to).spliterator(), false).map(this::on);
+			}
+
+			default Stream<T> content() {
+				return sequence(tubs().map(Tub::eventSupplier).collect(Collectors.toList()));
+			}
+
+			default Stream<T> content(Predicate<Timetag> filter) {
+				return sequence(tubs().filter(t -> filter.test(t.timetag())).map(Tub::eventSupplier).collect(Collectors.toList()));
 			}
 		}
 
@@ -112,7 +123,10 @@ public interface Datalake {
 	}
 
 	interface ResourceStore extends Store<ResourceEvent> {
-		default Optional<ResourceEvent> find(String rei) {return find(ResourceEvent.REI.of(rei));}
+		default Optional<ResourceEvent> find(String rei) {
+			return find(ResourceEvent.REI.of(rei));
+		}
+
 		Optional<ResourceEvent> find(ResourceEvent.REI rei);
 	}
 }
