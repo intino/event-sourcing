@@ -1,0 +1,7 @@
+dsl Legio
+
+Artifact("systems.intino.eventsourcing", "2.1.0") session
+	Imports
+		Compile("systems.intino.eventsourcing", "event", "5.1.0")
+	Package(ModulesAndLibrariesLinkedByManifest, attachSources = true, signArtifactWithGpg = true)
+	Distribution > Artifactory("intino-sonatype")

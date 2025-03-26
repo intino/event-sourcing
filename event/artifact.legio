@@ -1,0 +1,12 @@
+dsl Legio
+
+Artifact("systems.intino.eventsourcing", "5.1.0") event
+	Imports
+		Compile("systems.intino.eventsourcing", "zim", "5.1.2")
+		Compile("io.intino.alexandria", "logger", "2.1.0")
+		Compile("io.intino.alexandria", "iterator-stream", "1.0.0")
+		Compile("io.intino.alexandria", "primitives", "1.1.4")
+		Compile("io.intino.alexandria", "json", "1.2.3")
+		Test("junit", "junit", "4.13.2")
+	Package(ModulesAndLibrariesLinkedByManifest, attachSources = true, signArtifactWithGpg = true)
+	Distribution > Artifactory("intino-sonatype")

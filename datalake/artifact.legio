@@ -1,0 +1,12 @@
+dsl Legio
+
+Artifact("systems.intino.eventsourcing", "7.1.0") datalake
+	Imports
+		Compile("systems.intino.eventsourcing", "event", "5.1.0")
+		Test("junit", "junit", "4.13.2")
+		Test("org.assertj", "assertj-core", "3.24.2")
+		Test("commons-io", "commons-io", "2.9.0")
+		Test("org.openjdk.jmh", "jmh-core", "1.37")
+        Test("org.openjdk.jmh", "jmh-generator-annprocess", "1.37")
+	Package(ModulesAndLibrariesLinkedByManifest, attachSources = true, signArtifactWithGpg = true)
+	Distribution > Artifactory("intino-sonatype")

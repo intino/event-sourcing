@@ -1,0 +1,5 @@
+dsl Legio
+
+Project("describes here your project") event-sourcing
+	Repository("intino-maven")
+		Release("https://artifactory.intino.io/artifactory/releases")
