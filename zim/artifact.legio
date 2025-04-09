@@ -1,6 +1,7 @@
 dsl Legio
 
 Artifact("systems.intino.eventsourcing", "5.1.2") zim
+	description = "This repository implements a custom message serialization format optimized for performance and compactness, using Zstandard (Zstd) compression to reduce data size during storage or transmission. It is designed for fast serialization and deserialization, making it suitable for high-throughput systems, efficient data exchange, and resource-constrained environments."
 	License(type = GPL)
 	Imports
 		Compile("systems.intino.eventsourcing", "message", "4.1.2")

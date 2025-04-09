@@ -1,6 +1,7 @@
 dsl Legio
 
 Artifact("systems.intino.eventsourcing", "4.1.2") message
+	description = "This component provides a lightweight and efficient system for serializing and deserializing messages without any compression. It is designed for simplicity and speed, making it ideal for scenarios where low overhead and fast processing are prioritized over data size reduction."
 	Imports
 		Test("junit", "junit", "4.13.2")
 		Test("org.assertj", "assertj-core", "3.27.3")

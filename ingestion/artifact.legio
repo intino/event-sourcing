@@ -1,6 +1,7 @@
 dsl Legio
 
 Artifact("systems.intino.eventsourcing", "5.1.0") ingestion
+	description = "The `EventSession` class provides a way to write event data to a specific session. It uses a `MessageWriter` object to write the data and a `SessionHandler.Provider` to provide the correct `MessageWriter` object. The class also provides a `flush` method to force the data to be written to the session and a `close` method to close the session."
 	License(type = GPL)
 	Imports
 		Compile("systems.intino.eventsourcing", "session", "2.1.0")
