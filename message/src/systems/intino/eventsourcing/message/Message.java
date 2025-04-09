@@ -328,11 +328,11 @@ public class Message {
 		}
 
 		/**
-		 * <p>Returns a Stream consisting only in the raw data of this value. If the data is null or this.isEmpty(), then an empty Stream is returned.</p`>
+		 * <p>Returns a Stream consisting only in the raw data of this value. If the data is null or this.isEmpty(), then an empty Stream is returned.</p>
 		 * */
 		default Stream<String> stream() {return asOptional().stream();}
 		/**
-		 * <p>Returns a Stream consisting only in this value parsed to the specified type. If it fails to parse then an empty Stream is returned.</p`>
+		 * <p>Returns a Stream consisting only in this value parsed to the specified type. If it fails to parse then an empty Stream is returned.</p>
 		 * */
 		default <T> Stream<T> stream(Class<T> type) {return asOptional(type).stream();}
 		default <T> Stream<T> flatMap(Class<T> type) {
