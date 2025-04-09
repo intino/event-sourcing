@@ -1,5 +1,8 @@
 dsl Legio
 
 Project("describes here your project") event-sourcing
+	Developer(name = "Jose Juan Hernandez", email = "josejuanhernandez@gmail.com", organization = "intino.systems", organizationUrl = "https://www.intino.systems")
+	Developer(name = "Octavio Roncal", email = "octavioroncal11@gmail.com", organization = "intino.systems", organizationUrl = "https://www.intino.systems")
+	Scm(url = "https://github.com/intino/datamarts.git", connection = "scm:git:https://github.com/intino/datamarts.git")
 	Repository("intino-maven")
 		Release("https://artifactory.intino.io/artifactory/releases")
