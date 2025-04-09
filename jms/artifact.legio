@@ -1,11 +1,12 @@
 dsl Legio
 
 Artifact("systems.intino.eventsourcing", "2.1.0") jms
+	License(type = GPL)
 	Imports
 		Compile("io.intino.alexandria", "logger4j", "1.1.0")
 		Compile("io.intino.alexandria", "logger", "2.1.0")
 		Compile("io.intino.alexandria", "exceptions", "2.1.2")
 		Compile("org.apache.activemq", "activemq-client", "6.1.6")
 		Test("junit", "junit", "4.13.2")
-	Package(ModulesAndLibrariesLinkedByManifest, attachSources = true, signArtifactWithGpg = true)
-	Distribution > Artifactory("intino-sonatype")
+	Package(ModulesAndLibrariesLinkedByManifest)
+    Distribution > Sonatype(identifier = "intino-sonatype")

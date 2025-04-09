@@ -1,6 +1,7 @@
 dsl Legio
 
 Artifact("systems.intino.eventsourcing", "7.1.0") sealing
+	License(type = GPL)
 	Imports
 		Compile("systems.intino.eventsourcing", "datalake", "7.1.0")
 		Compile("systems.intino.eventsourcing", "ingestion", "5.1.0")
@@ -9,6 +10,5 @@ Artifact("systems.intino.eventsourcing", "7.1.0") sealing
 		Test("org.openjdk.jmh", "jmh-core", "1.37")
 		Test("org.openjdk.jmh", "jmh-generator-annprocess", "1.37")
 		Test("commons-io", "commons-io", "2.18.0")
-
-	Package(ModulesAndLibrariesLinkedByManifest, attachSources = true, signArtifactWithGpg = true)
-	Distribution > Artifactory("intino-sonatype")
+	Package(ModulesAndLibrariesLinkedByManifest)
+    Distribution > Sonatype(identifier = "intino-sonatype")

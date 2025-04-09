@@ -6,6 +6,5 @@ Artifact("systems.intino.eventsourcing", "4.1.2") message
 		Test("org.assertj", "assertj-core", "3.27.3")
 		Test("org.openjdk.jmh", "jmh-core", "1.37")
         Test("org.openjdk.jmh", "jmh-generator-annprocess", "1.37")
-
-	Package(ModulesAndLibrariesLinkedByManifest, attachSources = true, signArtifactWithGpg = true)
-	Distribution > Artifactory("intino-sonatype")
+	Package(ModulesAndLibrariesLinkedByManifest)
+	Distribution > Sonatype(identifier = "intino-sonatype")

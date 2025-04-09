@@ -1,8 +1,9 @@
 dsl Legio
 
 Artifact("systems.intino.eventsourcing", "5.1.0") ingestion
+	License(type = GPL)
 	Imports
 		Compile("systems.intino.eventsourcing", "session", "2.1.0")
 		Test("junit", "junit", "4.13.2")
-	Package(ModulesAndLibrariesLinkedByManifest, attachSources = true, signArtifactWithGpg = true)
-	Distribution > Artifactory("intino-sonatype")
+	Package(ModulesAndLibrariesLinkedByManifest)
+    Distribution > Sonatype(identifier = "intino-sonatype")
