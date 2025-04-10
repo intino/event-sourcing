@@ -1,6 +1,7 @@
 dsl Legio
 
 Artifact("systems.intino.eventsourcing", "2.1.0") session
+	description = "A Java module for handling sessions in the context of datalake event ingestion. A `Session` provides a structured way to group and import event data, supporting specific formats and input sources."
 	License(type = GPL)
 	Imports > Compile("systems.intino.eventsourcing", "event", "5.1.0")
 	Package(ModulesAndLibrariesLinkedByManifest)

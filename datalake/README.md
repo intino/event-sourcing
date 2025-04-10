@@ -1,4 +1,4 @@
-# Alexandria Datalake
+# Datalake
 A Java interface for working with data stored in a datalake. This library provides an implementation based on java.io.File.
 
 ## Table of Contents

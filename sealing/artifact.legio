@@ -1,6 +1,7 @@
 dsl Legio
 
 Artifact("systems.intino.eventsourcing", "7.1.0") sealing
+	description = "A Java module for sealing sessions into a datalake. The `SessionSealer` interface provides the functionality to consolidate event sessions into the appropriate tanks within a `Datalake`, ensuring events are persisted in an ordered and structured manner."
 	License(type = GPL)
 	Imports
 		Compile("systems.intino.eventsourcing", "datalake", "7.1.0")
