@@ -1,6 +1,7 @@
 dsl Legio
 
 Artifact("systems.intino.eventsourcing", "2.1.0") jms
+	description = "A Java library that facilitates the connection to a message broker. This library provides a simplified and reusable interface for sending and receiving messages through ActiveMQ queues and topics, making it easy to integrate messaging capabilities into event-driven applications."
 	License(type = GPL)
 	Imports
 		Compile("io.intino.alexandria", "logger4j", "1.1.0")
