@@ -11,5 +11,4 @@ Artifact("systems.intino.eventsourcing", "7.1.0") datalake
 		Test("org.openjdk.jmh", "jmh-core", "1.37")
         Test("org.openjdk.jmh", "jmh-generator-annprocess", "1.37")
 	Package(ModulesAndLibrariesLinkedByManifest)
-		createMavenPom = true
 	Distribution > Sonatype(identifier = "intino-sonatype")
